@@ -1,0 +1,136 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		LinkedList ll=new LinkedList();
+		ll.print();
+		ll.insert(5);
+		ll.insert(6);
+		ll.insert(10);
+		ll.insert(2);
+		ll.insert(3);
+		ll.insert(1);
+		System.out.println("ll print");
+		ll.print();
+		ll.insertStart(11);
+		System.out.println("ll add at start");
+		ll.print();
+		ll.insertPos(7,6);
+		System.out.println("add after node");
+		ll.print();
+		ll.deleteEnd();
+		System.out.println("ll delete end");
+		ll.print();
+		ll.deletStart();
+		System.out.println("ll delete start");
+		ll.print();
+		ll.deletenode(10);
+		System.out.println("ll delete node");
+		ll.print();
+	}
+}
+
+class LinkedList{
+    class node{
+        int data;
+        node next;
+        
+       public  node(int data){
+       this.data=data;
+       this.next=null;
+    }
+    }
+    
+    
+    
+    node head=null;
+    //insert value in linked list in end
+    void insert(int data){
+        node newNode=new node(data);
+        if(head==null){
+            head=newNode;
+        }
+        else{
+            node current=head;
+            while(current.next!=null){
+                current=current.next;
+            }
+            current.next=newNode;
+        }
+    }
+    //print linked list.
+    void print(){
+        if(head==null)System.out.println("Empty");
+        else{
+            node current=head;
+            while(current!=null){
+                System.out.println(current.data);
+                current=current.next;
+            }
+        }
+    }
+    
+    //add value at begning in linked list
+    void insertStart(int data){
+        node newNode=new node(data);
+        if(head==null)head=newNode;
+        else{
+            // node current=head;
+            newNode.next=head;
+            head=newNode;
+        }
+    }
+    
+    //insert at postion
+    void insertPos(int data, int ins){
+        node newNode=new node(data);
+        if(head==null)head=newNode;
+        else{
+            node current=head;
+            while(current.data!=ins){
+                current=current.next;
+            }
+             
+            newNode.next=current.next;
+            current.next=newNode;
+        }
+    }
+    
+    void deleteEnd(){
+        node current=head;
+        if(head==null)System.out.println("Empty");
+        else{
+            while(current.next.next!=null)current=current.next;
+            current.next=null;
+            
+        }
+    }
+    
+    void deletStart(){
+        node current=head;
+        if(head==null)System.out.println("Empty");
+        else{
+           head= current.next;
+            // current.next=null;
+        }
+    }
+    
+    void deletenode(int nodeVal){
+        node current=head;
+        if(head==null)System.out.println("Empty");
+        else{
+            while(current.next.data!=nodeVal){
+                current=current.next;
+            }
+            current.next=current.next.next;
+        }
+    }
+}
